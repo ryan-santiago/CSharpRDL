@@ -1,0 +1,443 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CD56B0B2-0034-4643-888A-BB25879E7A37}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CSharpRDL</RootNamespace>
+    <AssemblyName>CSharpRDL</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44369</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1586.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1586.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1586.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1586.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebDesign, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1586.0\lib\net40\Microsoft.ReportViewer.WebDesign.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1586.0\lib\net40\Microsoft.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.9\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.9\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.9\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.9\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.2.0.1\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.9\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-grid.rtl.css" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Content\bootstrap-utilities.css" />
+    <Content Include="Content\bootstrap-utilities.min.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.rtl.css" />
+    <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\Dashboard\assets\css\bootstrap.min.css" />
+    <Content Include="Content\Dashboard\assets\css\fullcalendar.css" />
+    <Content Include="Content\Dashboard\assets\css\lineicons.css" />
+    <Content Include="Content\Dashboard\assets\css\loading-bar.min.css" />
+    <Content Include="Content\Dashboard\assets\css\main.css" />
+    <Content Include="Content\Dashboard\assets\css\materialdesignicons.min.css" />
+    <Content Include="Content\Dashboard\assets\css\morris.css" />
+    <Content Include="Content\Dashboard\assets\fonts\LineIcons.svg" />
+    <Content Include="Content\Dashboard\assets\images\auth\reset-password.svg" />
+    <Content Include="Content\Dashboard\assets\images\auth\shape.svg" />
+    <Content Include="Content\Dashboard\assets\images\auth\signin-image.svg" />
+    <Content Include="Content\Dashboard\assets\images\cards\card-style-1\admin-1.png" />
+    <Content Include="Content\Dashboard\assets\images\cards\card-style-1\admin-2.png" />
+    <Content Include="Content\Dashboard\assets\images\cards\card-style-1\admin-3.png" />
+    <Content Include="Content\Dashboard\assets\images\cards\card-style-1\card-1.jpg" />
+    <Content Include="Content\Dashboard\assets\images\cards\card-style-1\card-2.jpg" />
+    <Content Include="Content\Dashboard\assets\images\cards\card-style-1\card-3.jpg" />
+    <Content Include="Content\Dashboard\assets\images\cards\card-style-2\card-1.jpg" />
+    <Content Include="Content\Dashboard\assets\images\cards\card-style-2\card-2.jpg" />
+    <Content Include="Content\Dashboard\assets\images\cards\card-style-2\card-3.jpg" />
+    <Content Include="Content\Dashboard\assets\images\cards\card-style-4\card-1.png" />
+    <Content Include="Content\Dashboard\assets\images\cards\card-style-4\card-2.png" />
+    <Content Include="Content\Dashboard\assets\images\cards\card-style-4\card-3.png" />
+    <Content Include="Content\Dashboard\assets\images\cards\card-style-5\card-1.jpg" />
+    <Content Include="Content\Dashboard\assets\images\cards\card-style-5\card-2.jpg" />
+    <Content Include="Content\Dashboard\assets\images\cards\card-style-6\card-1.jpg" />
+    <Content Include="Content\Dashboard\assets\images\cards\card-style-6\card-2.jpg" />
+    <Content Include="Content\Dashboard\assets\images\cards\card-style-6\card-3.jpg" />
+    <Content Include="Content\Dashboard\assets\images\cards\card-style-6\card-4.jpg" />
+    <Content Include="Content\Dashboard\assets\images\clients\client-profile.png" />
+    <Content Include="Content\Dashboard\assets\images\clients\clients-cover.jpg" />
+    <Content Include="Content\Dashboard\assets\images\favicon.svg" />
+    <Content Include="Content\Dashboard\assets\images\invoice\uideck-logo.svg" />
+    <Content Include="Content\Dashboard\assets\images\lead\lead-1.png" />
+    <Content Include="Content\Dashboard\assets\images\lead\lead-2.png" />
+    <Content Include="Content\Dashboard\assets\images\lead\lead-3.png" />
+    <Content Include="Content\Dashboard\assets\images\lead\lead-4.png" />
+    <Content Include="Content\Dashboard\assets\images\lead\lead-5.png" />
+    <Content Include="Content\Dashboard\assets\images\lead\lead-6.png" />
+    <Content Include="Content\Dashboard\assets\images\logo\logo-2.svg" />
+    <Content Include="Content\Dashboard\assets\images\logo\logo-white.svg" />
+    <Content Include="Content\Dashboard\assets\images\logo\logo.svg" />
+    <Content Include="Content\Dashboard\assets\images\modals\image-1.svg" />
+    <Content Include="Content\Dashboard\assets\images\products\product-mini-1.jpg" />
+    <Content Include="Content\Dashboard\assets\images\products\product-mini-2.jpg" />
+    <Content Include="Content\Dashboard\assets\images\products\product-mini-3.jpg" />
+    <Content Include="Content\Dashboard\assets\images\products\product-mini-4.jpg" />
+    <Content Include="Content\Dashboard\assets\images\products\product-mini-5.jpg" />
+    <Content Include="Content\Dashboard\assets\images\profile\profile-1.png" />
+    <Content Include="Content\Dashboard\assets\images\profile\profile-cover.jpg" />
+    <Content Include="Content\Dashboard\assets\images\profile\profile-image.png" />
+    <Content Include="Content\Dashboard\assets\images\profile\profile.png" />
+    <Content Include="Content\Dashboard\assets\images\projects\image-1.png" />
+    <Content Include="Content\Dashboard\assets\images\projects\image-2.png" />
+    <Content Include="Content\Dashboard\assets\images\projects\image-3.png" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Models\MVCTestModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MVCTestModel.Context.cs</LastGenOutput>
+      <DependentUpon>MVCTestModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\MVCTestModel.edmx.sql" />
+    <Content Include="Models\MVCTestModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MVCTestModel.edmx</DependentUpon>
+      <LastGenOutput>MVCTestModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Reports\EmpReport.aspx" />
+    <Content Include="Reports\GenerateReport.aspx" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="EmpDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmpDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Employee201file.cs">
+      <DependentUpon>MVCTestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MVCTestModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MVCTestModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MVCTestModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MVCTestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MVCTestModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MVCTestModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>MVCTestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MVCTestDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MVCTestDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\EmpReport.aspx.cs">
+      <DependentUpon>EmpReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\EmpReport.aspx.designer.cs">
+      <DependentUpon>EmpReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\GenerateReport.aspx.cs">
+      <DependentUpon>GenerateReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\GenerateReport.aspx.designer.cs">
+      <DependentUpon>GenerateReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="Content\bootstrap.rtl.min.css.map" />
+    <Content Include="Content\bootstrap.rtl.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Content\Dashboard\assets\.DS_Store" />
+    <Content Include="Content\Dashboard\assets\css\.DS_Store" />
+    <Content Include="Content\Dashboard\assets\fonts\LineIcons.woff" />
+    <Content Include="Content\Dashboard\assets\fonts\LineIcons.woff2" />
+    <Content Include="Content\Dashboard\assets\fonts\materialdesignicons-webfont.woff" />
+    <Content Include="Content\Dashboard\assets\fonts\materialdesignicons-webfont.woff2" />
+    <Content Include="Content\Dashboard\assets\images\.DS_Store" />
+    <Content Include="Content\Dashboard\assets\images\auth\.DS_Store" />
+    <Content Include="Content\Dashboard\assets\images\cards\.DS_Store" />
+    <Content Include="Content\Dashboard\assets\images\cards\card-style-1\.DS_Store" />
+    <Content Include="Content\Dashboard\assets\images\cards\card-style-2\.DS_Store" />
+    <Content Include="Content\Dashboard\assets\images\cards\card-style-4\.DS_Store" />
+    <Content Include="Content\Dashboard\assets\images\cards\card-style-5\.DS_Store" />
+    <Content Include="Content\Dashboard\assets\images\cards\card-style-6\.DS_Store" />
+    <Content Include="Content\Dashboard\assets\images\clients\.DS_Store" />
+    <Content Include="Content\Dashboard\assets\images\invoice\.DS_Store" />
+    <Content Include="Content\Dashboard\assets\images\lead\.DS_Store" />
+    <Content Include="Content\Dashboard\assets\images\logo\.DS_Store" />
+    <Content Include="Content\Dashboard\assets\images\modals\.DS_Store" />
+    <Content Include="Content\Dashboard\assets\images\profile\.DS_Store" />
+    <Content Include="Content\Dashboard\assets\images\projects\.DS_Store" />
+    <Content Include="Content\Dashboard\assets\scss\.DS_Store" />
+    <Content Include="Content\Dashboard\assets\scss\alerts\_alerts.scss" />
+    <Content Include="Content\Dashboard\assets\scss\auth\_signin.scss" />
+    <Content Include="Content\Dashboard\assets\scss\auth\_signup.scss" />
+    <Content Include="Content\Dashboard\assets\scss\buttons\_buttons.scss" />
+    <Content Include="Content\Dashboard\assets\scss\calendar\_calendar.scss" />
+    <Content Include="Content\Dashboard\assets\scss\cards\_cards.scss" />
+    <Content Include="Content\Dashboard\assets\scss\dashboards\_dashboards.scss" />
+    <Content Include="Content\Dashboard\assets\scss\forms\_form-elements.scss" />
+    <Content Include="Content\Dashboard\assets\scss\header\_header.scss" />
+    <Content Include="Content\Dashboard\assets\scss\icons\_icons.scss" />
+    <Content Include="Content\Dashboard\assets\scss\invoice\_invoice.scss" />
+    <Content Include="Content\Dashboard\assets\scss\main.scss" />
+    <Content Include="Content\Dashboard\assets\scss\notification\_notification.scss" />
+    <Content Include="Content\Dashboard\assets\scss\settings\_settings.scss" />
+    <Content Include="Content\Dashboard\assets\scss\tables\_tables.scss" />
+    <Content Include="Content\Dashboard\assets\scss\typography\.DS_Store" />
+    <Content Include="Content\Dashboard\assets\scss\typography\_typography.scss" />
+    <Content Include="Content\Dashboard\assets\scss\_common.scss" />
+    <Content Include="Content\Dashboard\assets\scss\_default.scss" />
+    <Content Include="Content\Dashboard\assets\scss\_mixin.scss" />
+    <Content Include="Content\Dashboard\assets\scss\_sidebar.scss" />
+    <Content Include="Content\Dashboard\assets\scss\_variables.scss" />
+    <EntityDeploy Include="Models\MVCTestModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MVCTestModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\MVCTestModel.edmx.diagram">
+      <DependentUpon>MVCTestModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="MVCTestDataSet.xsc">
+      <DependentUpon>MVCTestDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="EmpDataSet.xsc">
+      <DependentUpon>EmpDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="EmpDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EmpDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="EmpDataSet.xss">
+      <DependentUpon>EmpDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="MVCTestDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MVCTestDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="MVCTestDataSet.xss">
+      <DependentUpon>MVCTestDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="packages.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.esm.min.js.map" />
+    <Content Include="Scripts\bootstrap.esm.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Views\Shared\_DashboardLayoutPage.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Dummy.cshtml" />
+    <Content Include="Views\Home\BIR_BCS.cshtml" />
+    <Content Include="Views\Home\ReportGenerator.cshtml" />
+    <Content Include="Views\Home\Loader.cshtml" />
+    <Content Include="Views\Home\SystemConfiguration.cshtml" />
+    <Content Include="Views\Home\EmployeeReport.cshtml" />
+    <Content Include="Views\Home\AddEmployee.cshtml" />
+    <Content Include="Views\Home\EditEmployee.cshtml" />
+    <Content Include="Views\Home\TEST.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Reports\EmpReport.rdlc" />
+    <EmbeddedResource Include="Reports\Report.rdlc" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>55123</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44369/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,80 @@
+﻿@model IEnumerable<CSharpRDL.Models.Employee201file>
+@using Microsoft.Reporting.WebForms
+@{
+    ViewBag.Title = "ReportGenerator";
+    Layout = "~/Views/Shared/_DashboardLayoutPage.cshtml";
+}
+
+<section class="table-components">
+    <div class="container-fluid">
+        <!-- ========== title-wrapper start ========== -->
+        <div class="title-wrapper pt-30">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="title mb-30">
+                        <h2>Report Generator</h2>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- ========== title-wrapper end ========== -->
+        <!-- ========== tables-wrapper start ========== -->
+        <!-- ========== tables-wrapper end ========== -->
+        <div class="row">
+            @*<div class="col-md-4">
+                <select class="form-control" id="selFilter">
+                    <option value="Department">Department</option>
+                    <option value="">Saab</option>
+                    <option value="mercedes">Mercedes</option>
+                    <option value="audi">Audi</option>
+                </select>
+            </div>*@
+            <div class="col-md-4">
+                <input type="text" class="form-control" id="searchText" placeholder="Enter Department">
+            </div>
+            <div class="col-md-3">
+                <button type="button" id="btnSearch" onclick="GenReport()" class="btn btn-raised btn-primary btn-block">Generate Report</button>
+            </div>
+        </div>
+        <div class="row" id="divReport">
+        </div>
+    </div>
+    <!-- end container -->
+</section>
+<script>
+    function GenReport() {
+
+
+        var searchText = document.getElementById("searchText").value;
+
+
+        //ASPX page URL to load report
+        var src = '../Reports/GenerateReport.aspx?';
+
+        //We can add parameters here
+        srcsrc = src + "searchText=" + searchText;
+
+
+        //We can append more than one parameter like below
+        //var companyId = 1
+        //srcsrc = src + "compnayID=" + companyId
+
+        //Create a dynamic iframe here and append this to div tag
+        //var iframe = '<iframe id="reportFrame" width="100%" height="800px" scrolling="no" frameborder="0" src="' + src + '" allowfullscreen></iframe>';
+        //$("#divReport").html(iframe);
+        var iframe = document.createElement("iframe");
+        iframe.id = "reportFrame";
+        iframe.width = "100%";
+        iframe.height = "800px";
+        iframe.scrolling = "no";
+        iframe.frameborder = "0";
+        iframe.src = srcsrc;
+        iframe.setAttribute("allowfullscreen", "");
+
+        var divReport = document.getElementById("divReport");
+        divReport.innerHTML = "";
+        divReport.appendChild(iframe);
+    }
+</script>
+
