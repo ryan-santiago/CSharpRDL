@@ -1,34 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="MVCTestModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="MVCTestModelStoreContainer">
-    <EntitySet Name="Employee201file" EntityType="MVCTestModel.Store.Employee201file" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Users" EntityType="MVCTestModel.Store.Users" store:Type="Tables" Schema="dbo" />
-  </EntityContainer>
+<Schema Namespace="MVCTestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Employee201file">
     <Key>
       <PropertyRef Name="EmployeeId" />
     </Key>
     <Property Name="EmployeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Firstname" Type="varchar" Nullable="false" MaxLength="100" />
-    <Property Name="Lastname" Type="varchar" Nullable="false" MaxLength="100" />
-    <Property Name="Middlename" Type="varchar" Nullable="true" MaxLength="100" />
-    <Property Name="Suffix" Type="varchar" Nullable="true" MaxLength="100" />
-    <Property Name="ContactNo" Type="varchar" Nullable="false" MaxLength="100" />
-    <Property Name="Address" Type="varchar" Nullable="false" MaxLength="100" />
-    <Property Name="Birthdate" Type="varchar" Nullable="false" MaxLength="100" />
-    <Property Name="Age" Type="int" Nullable="true" />
-    <Property Name="Department" Type="varchar" Nullable="true" MaxLength="100" />
-    <Property Name="ProfileImg" Type="varbinary(max)" Nullable="true" />
-    <Property Name="ImagePath" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Firstname" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Lastname" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Middlename" Type="varchar" MaxLength="100" />
+    <Property Name="Suffix" Type="varchar" MaxLength="100" />
+    <Property Name="ContactNo" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Birthdate" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Age" Type="int" />
+    <Property Name="Department" Type="varchar" MaxLength="100" />
+    <Property Name="ProfileImg" Type="image" />
+    <Property Name="ImagePath" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
       <PropertyRef Name="UserId" />
     </Key>
     <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Username" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="Email" Type="varchar" Nullable="true" MaxLength="100" />
-    <Property Name="IsActive" Type="bit" Nullable="true" />
+    <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+    <Property Name="IsActive" Type="bit" />
   </EntityType>
+  <EntityContainer Name="MVCTestModelStoreContainer">
+    <EntitySet Name="Employee201file" EntityType="Self.Employee201file" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
 </Schema>

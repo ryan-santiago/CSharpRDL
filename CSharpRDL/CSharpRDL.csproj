@@ -1,4 +1,5 @@
 ﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -192,10 +193,9 @@
     <Content Include="Global.asax" />
     <Content Include="Models\MVCTestModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MVCTestModel.Context.cs</LastGenOutput>
       <DependentUpon>MVCTestModel.edmx</DependentUpon>
+      <LastGenOutput>MVCTestModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\MVCTestModel.edmx.sql" />
     <Content Include="Models\MVCTestModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>MVCTestModel.edmx</DependentUpon>
@@ -230,6 +230,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Employee201file.cs">
       <DependentUpon>MVCTestModel.tt</DependentUpon>
     </Compile>
@@ -251,6 +252,7 @@
     <Compile Include="Models\User.cs">
       <DependentUpon>MVCTestModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Users.cs" />
     <Compile Include="MVCTestDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -335,13 +337,6 @@
     <Content Include="Content\Dashboard\assets\scss\_mixin.scss" />
     <Content Include="Content\Dashboard\assets\scss\_sidebar.scss" />
     <Content Include="Content\Dashboard\assets\scss\_variables.scss" />
-    <EntityDeploy Include="Models\MVCTestModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MVCTestModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\MVCTestModel.edmx.diagram">
-      <DependentUpon>MVCTestModel.edmx</DependentUpon>
-    </Content>
     <Content Include="MVCTestDataSet.xsc">
       <DependentUpon>MVCTestDataSet.xsd</DependentUpon>
     </Content>
@@ -355,6 +350,13 @@
     </None>
     <Content Include="EmpDataSet.xss">
       <DependentUpon>EmpDataSet.xsd</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\MVCTestModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MVCTestModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\MVCTestModel.edmx.diagram">
+      <DependentUpon>MVCTestModel.edmx</DependentUpon>
     </Content>
     <None Include="MVCTestDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
@@ -384,6 +386,7 @@
     <Content Include="Views\Home\AddEmployee.cshtml" />
     <Content Include="Views\Home\EditEmployee.cshtml" />
     <Content Include="Views\Home\TEST.cshtml" />
+    <Content Include="Views\Home\ViewDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -401,6 +404,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Reports\EmpReport.rdlc" />
     <EmbeddedResource Include="Reports\Report.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -432,6 +438,7 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -15,7 +15,7 @@
     <Property Name="Age" Type="Int32" />
     <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="ProfileImg" Type="Binary" MaxLength="Max" FixedLength="false" />
-    <Property Name="ImagePath" Type="String" Nullable="false" />
+    <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="User">
     <Key>

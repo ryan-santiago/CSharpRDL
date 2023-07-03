@@ -48,6 +48,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
+                                        <th><h6></h6></th>
                                         <th><h6>Firstname</h6></th>
                                         <th><h6>Lastname</h6></th>
                                         <th><h6>Middlename</h6></th>
@@ -55,6 +56,7 @@
                                         <th><h6>Contact No</h6></th>
                                         <th><h6>Birthday</h6></th>
                                         <th><h6>Age</h6></th>
+                                        <th><h6>Department</h6></th>
                                         <th><h6>Action</h6></th>
                                     </tr>
                                     <!-- end table row-->
@@ -74,12 +76,15 @@
                                                              alt="" />
                                                     </div>
                                                     <div class="lead-text">
-                                                        <p>@item.Firstname</p>
+                                                        <p>@*@item.Firstname*@</p>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td class="min-width">
-                                                <p><a href="#0">@item.Lastname</a></p>
+                                                <p><a href="@Url.Action("ViewDetails", "Home", new { id = item.EmployeeId })">@item.Firstname</a></p>
+                                            </td>
+                                            <td class="min-width">
+                                                <p>@item.Lastname</p>
                                             </td>
                                             <td class="min-width">
                                                 <p>@item.Middlename</p>
@@ -95,6 +100,9 @@
                                             </td>
                                             <td class="min-width">
                                                 <p>@item.Age</p>
+                                            </td>
+                                            <td class="min-width">
+                                                <p>@item.Department</p>
                                             </td>
                                             <td>
                                                 <div class="action">

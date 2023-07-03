@@ -103,6 +103,15 @@ namespace CSharpRDL.Controllers
             return View();
         }
 
+        public ActionResult ViewDetails()
+        {
+            //if (Session["Username"] == null)
+            //{
+            //    return RedirectToAction("Login", "Login");
+            //}
+            return View();
+        }
+
         [HttpPost]
         public ActionResult AddEmployee(Employee201file emp, HttpPostedFileBase imageFiles)
         {

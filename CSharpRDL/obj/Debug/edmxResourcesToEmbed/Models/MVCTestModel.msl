@@ -2,7 +2,7 @@
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="MVCTestModelStoreContainer" CdmEntityContainer="DBEntities">
     <EntitySetMapping Name="Employee201file">
-      <EntityTypeMapping TypeName="IsTypeOf(MVCTestModel.Employee201file)">
+      <EntityTypeMapping TypeName="MVCTestModel.Employee201file">
         <MappingFragment StoreEntitySet="Employee201file">
           <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
           <ScalarProperty Name="Firstname" ColumnName="Firstname" />
@@ -20,7 +20,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="IsTypeOf(MVCTestModel.User)">
+      <EntityTypeMapping TypeName="MVCTestModel.User">
         <MappingFragment StoreEntitySet="Users">
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="Username" ColumnName="Username" />
