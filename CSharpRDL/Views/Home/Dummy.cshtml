@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_DashboardLayoutPage.cshtml";
 }
 
+@Html.Raw(TempData["msg"])
 <section class="table-components">
     <div class="container-fluid">
 
@@ -41,7 +42,7 @@
                         <h6 class="mb-10">Employee Data</h6>
                         <p class="text-sm mb-10" align="right">
                             <a href="/Home/AddEmployee" class="btn primary-btn-outline rounded-md btn-hover">Add Employee</a>
-                            
+
                         </p>
                         <div class="table-wrapper table-responsive">
                             <table class="table">
@@ -111,8 +112,8 @@
                                             </td>
                                         </tr>
                                     }
-                                        <!-- end table row -->
-                                    </tbody>
+                                    <!-- end table row -->
+                                </tbody>
                             </table>
                             <!-- end table -->
                         </div>

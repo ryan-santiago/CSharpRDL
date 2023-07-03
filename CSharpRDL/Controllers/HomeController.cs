@@ -120,11 +120,21 @@ namespace CSharpRDL.Controllers
 
 
                 db.Employee201file.Add(emp);
-                db.SaveChanges();
 
-                int id = emp.EmployeeId;
+                int count = db.SaveChanges();
+                if (count > 0)
+                {
+                    TempData["msg"] = "<script>alert('Save Successfully !');</script>";
+                    int id = emp.EmployeeId;
 
-                return RedirectToAction("Dummy");
+                    return RedirectToAction("Dummy");
+                }
+                else
+                {
+                    ViewBag.msg = "Not Saved";
+                }
+
+
             }
 
             return View(emp);
@@ -137,9 +147,10 @@ namespace CSharpRDL.Controllers
             //    return RedirectToAction("Login", "Login");
             //}
             var Employee = db.Employee201file.Find(id);
-            if(Employee == null)
+            if (Employee == null)
             {
-                return View();
+                //return View();
+                return HttpNotFound();
 
             }
             return View("EditEmployee", Employee);
@@ -147,18 +158,34 @@ namespace CSharpRDL.Controllers
         [HttpPost]
         public ActionResult EditEmployee(Employee201file emp, HttpPostedFileBase imageFiles)
         {
-            string Filename = Path.GetFileName(imageFiles.FileName);
-            string path = Path.Combine(Server.MapPath("~/Images/"), Filename);
+            if (ModelState.IsValid)
+            {
+                string Filename = Path.GetFileName(imageFiles.FileName);
+                string path = Path.Combine(Server.MapPath("~/Images/"), Filename);
 
-            emp.ImagePath = path;
+                emp.ImagePath = path;
 
-            imageFiles.SaveAs(Server.MapPath("~/Images/" + imageFiles.FileName));
+                imageFiles.SaveAs(Server.MapPath("~/Images/" + imageFiles.FileName));
 
-            emp.ProfileImg = new byte[imageFiles.ContentLength];
-            imageFiles.InputStream.Read(emp.ProfileImg, 0, imageFiles.ContentLength);
-            db.Entry(emp).State = EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("Dummy");
+                emp.ProfileImg = new byte[imageFiles.ContentLength];
+                imageFiles.InputStream.Read(emp.ProfileImg, 0, imageFiles.ContentLength);
+                db.Entry(emp).State = EntityState.Modified;
+                db.SaveChanges();
+                int count = db.SaveChanges();
+                if (count > 0)
+                {
+                    TempData["msg"] = "<script>alert('Updated Successfully !');</script>";
+                    int id = emp.EmployeeId;
+
+                    return RedirectToAction("Dummy");
+                }
+                else
+                {
+                    ViewBag.msg = "Not Saved";
+                }
+
+            }
+            return View();
         }
 
         public ActionResult EmpReport()
