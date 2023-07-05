@@ -1,10 +1,13 @@
 ﻿using CSharpRDL.Models;
+using CSharpRDL.MVCTestDataSetTableAdapters;
+using CSharpRDL.ViewModel;
 using Microsoft.Reporting.WebForms;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
@@ -100,6 +103,8 @@ namespace CSharpRDL.Controllers
             //{
             //    return RedirectToAction("Login", "Login");
             //}
+            ViewBag.department = db.departments.ToList();
+
             return View();
         }
 
@@ -113,13 +118,24 @@ namespace CSharpRDL.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddEmployee(Custom cus, HttpPostedFileBase imageFiles)
+        public ActionResult AddEmployee(Register obj, HttpPostedFileBase imageFiles)
         {
             if (ModelState.IsValid)
             {
                 string Filename = Path.GetFileName(imageFiles.FileName);
                 string path = Path.Combine(Server.MapPath("~/Images/"), Filename);
+                Employee201file emp = new Employee201file();
+                
 
+                emp.Firstname = obj.Firstname;
+                emp.Lastname = obj.Lastname;
+                emp.Middlename = obj.Middlename;
+                emp.Suffix = obj.Suffix;
+                emp.Address = obj.Address;
+                emp.Birthdate = obj.Birthdate;
+                emp.Age = obj.Age;
+                emp.Department = obj.Department;
+                emp.ContactNo = obj.ContactNo;
                 emp.ImagePath = path;
 
                 imageFiles.SaveAs(Server.MapPath("~/Images/" + imageFiles.FileName));
@@ -127,8 +143,18 @@ namespace CSharpRDL.Controllers
                 emp.ProfileImg = new byte[imageFiles.ContentLength];
                 imageFiles.InputStream.Read(emp.ProfileImg, 0, imageFiles.ContentLength);
 
+                //cus.user.IsActive = true;
 
                 db.Employee201file.Add(emp);
+                db.SaveChanges();
+
+                User u = new User();
+                u.Username = obj.Username;
+                u.Password = obj.Password;
+                u.IsActive = true;
+                u.Email = obj.Email;
+                u.EmployeeId = emp.EmployeeId;
+                db.UsersAccount.Add(u);
 
                 int count = db.SaveChanges();
                 if (count > 0)
@@ -146,7 +172,7 @@ namespace CSharpRDL.Controllers
 
             }
 
-            return View(emp);
+            return View(obj);
         }
         [HttpGet]
         public ActionResult EditEmployee(int id)

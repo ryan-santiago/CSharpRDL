@@ -22,11 +22,20 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="MVCTestModel.User">
         <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="departments">
+      <EntityTypeMapping TypeName="MVCTestModel.department">
+        <MappingFragment StoreEntitySet="department">
+          <ScalarProperty Name="department_name" ColumnName="department_name" />
+          <ScalarProperty Name="department_id" ColumnName="department_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

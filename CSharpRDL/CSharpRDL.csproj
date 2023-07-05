@@ -230,7 +230,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\department.cs">
+      <DependentUpon>MVCTestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\Employee.cs" />
     <Compile Include="Models\Employee201file.cs">
       <DependentUpon>MVCTestModel.tt</DependentUpon>
     </Compile>
@@ -252,7 +255,8 @@
     <Compile Include="Models\User.cs">
       <DependentUpon>MVCTestModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Users.cs" />
+    <Compile Include="ViewModel\Register.cs" />
+    <Compile Include="ViewModel\User1.cs" />
     <Compile Include="MVCTestDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -387,6 +391,7 @@
     <Content Include="Views\Home\EditEmployee.cshtml" />
     <Content Include="Views\Home\TEST.cshtml" />
     <Content Include="Views\Home\ViewDetails.cshtml" />
+    <Content Include="Views\Home\EditEmployee1.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

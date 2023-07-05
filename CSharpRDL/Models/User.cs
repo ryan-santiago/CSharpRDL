@@ -16,12 +16,17 @@ namespace CSharpRDL.Models
     public partial class User
     {
         public int UserId { get; set; }
+        [Required(ErrorMessage = "Please enter Username")]
         [Display(Name = "Username")]
         public string Username { get; set; }
         [Display(Name = "Password")]
         [DataType(DataType.Password)]
+        [Required(ErrorMessage = "Please enter Password")]
         public string Password { get; set; }
         public string Email { get; set; }
         public Nullable<bool> IsActive { get; set; }
+        public Nullable<int> EmployeeId { get; set; }
+    
+        public virtual Employee201file Employee201file { get; set; }
     }
 }
