@@ -113,7 +113,7 @@ namespace CSharpRDL.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddEmployee(Employee201file emp, HttpPostedFileBase imageFiles)
+        public ActionResult AddEmployee(Custom cus, HttpPostedFileBase imageFiles)
         {
             if (ModelState.IsValid)
             {
