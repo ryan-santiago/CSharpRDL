@@ -26,7 +26,8 @@ namespace CSharpRDL.Models
         }
     
         public virtual DbSet<Employee201file> Employee201file { get; set; }
-        public virtual DbSet<User> UsersAccount { get; set; }
+        public virtual DbSet<EmployeeDetail> EmployeeDetails { get; set; }
         public virtual DbSet<department> departments { get; set; }
+        public virtual DbSet<UsersAccount> UsersAccounts { get; set; }
     }
 }

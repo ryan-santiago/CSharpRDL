@@ -1,4 +1,5 @@
-﻿using CSharpRDL.Models;
+﻿using CrystalDecisions.ReportAppServer.ReportDefModel;
+using CSharpRDL.Models;
 using CSharpRDL.MVCTestDataSetTableAdapters;
 using CSharpRDL.ViewModel;
 using Microsoft.Reporting.WebForms;
@@ -7,10 +8,14 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Runtime.Remoting.Contexts;
+using System.Security.Policy;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using static System.Net.WebRequestMethods;
 
 namespace CSharpRDL.Controllers
@@ -35,7 +40,7 @@ namespace CSharpRDL.Controllers
             //    return RedirectToAction("Login", "Login");
             //}
 
-            var AllEmp = db.Employee201file.ToList();
+            var AllEmp = db.EmployeeDetails.ToList();
 
             return View(AllEmp);
         }
@@ -63,7 +68,9 @@ namespace CSharpRDL.Controllers
             //report.DataSources.Add(new ReportDataSource("Employee", employee));
 
             //ViewBag.ReportViewer = report;
+            var department = db.departments.ToList();
 
+            ViewBag.DepartmentList = new SelectList(department, "department_name", "department_name");
 
             return View();
 
@@ -103,8 +110,14 @@ namespace CSharpRDL.Controllers
             //{
             //    return RedirectToAction("Login", "Login");
             //}
-            ViewBag.department = db.departments.ToList();
+            //List<department> departments = new List<department>();
+            //departments = db.departments.Where(c => c.IsActive == true).ToList();
 
+            //ViewBag.DepartmentList = new SelectList(departments, "department_id", "department_name");
+
+            var department = db.departments.ToList();
+
+            ViewBag.DepartmentList = new SelectList(department, "department_id", "department_name");
             return View();
         }
 
@@ -122,11 +135,24 @@ namespace CSharpRDL.Controllers
         {
             if (ModelState.IsValid)
             {
+                DateTime today = DateTime.Today;
+                int countForm = db.EmployeeDetails
+                    .Count(f => f.CreatedDate == today);
+
+                int sequenceCount = countForm;
+                sequenceCount++;
+                string employeeId = "EMP" + DateTime.Now.ToString("yyyyMMdd") + sequenceCount.ToString("D3");
+
+                int deptID = int.Parse(obj.Department);
+                var selectedDept = db.departments.FirstOrDefault(c => c.department_id == deptID);
+
+
                 string Filename = Path.GetFileName(imageFiles.FileName);
                 string path = Path.Combine(Server.MapPath("~/Images/"), Filename);
-                Employee201file emp = new Employee201file();
-                
+                //Employee201file emp = new Employee201file();
+                EmployeeDetail emp = new EmployeeDetail();
 
+                emp.EmployeeID = employeeId;
                 emp.Firstname = obj.Firstname;
                 emp.Lastname = obj.Lastname;
                 emp.Middlename = obj.Middlename;
@@ -134,9 +160,11 @@ namespace CSharpRDL.Controllers
                 emp.Address = obj.Address;
                 emp.Birthdate = obj.Birthdate;
                 emp.Age = obj.Age;
-                emp.Department = obj.Department;
+                emp.Department = selectedDept.department_name;
                 emp.ContactNo = obj.ContactNo;
                 emp.ImagePath = path;
+                emp.Gender = obj.Gender;
+                emp.CreatedDate = DateTime.Today;
 
                 imageFiles.SaveAs(Server.MapPath("~/Images/" + imageFiles.FileName));
 
@@ -145,22 +173,34 @@ namespace CSharpRDL.Controllers
 
                 //cus.user.IsActive = true;
 
-                db.Employee201file.Add(emp);
+                //db.Employee201file.Add(emp);
+                UsersAccount user = new UsersAccount();
+                var checkUser = db.UsersAccounts.FirstOrDefault(c => c.Username == obj.Username);
+                if (checkUser != null)
+                {
+                    ViewBag.msg = "Username Already Exists !";
+
+                    var dept1 = db.departments.ToList();
+                    ViewBag.DepartmentList = new SelectList(dept1, "department_id", "department_name");
+
+                    return View();
+                }
+
+                db.EmployeeDetails.Add(emp);
                 db.SaveChanges();
 
-                User u = new User();
-                u.Username = obj.Username;
-                u.Password = obj.Password;
-                u.IsActive = true;
-                u.Email = obj.Email;
-                u.EmployeeId = emp.EmployeeId;
-                db.UsersAccount.Add(u);
+                user.Username = obj.Username;
+                user.Password = obj.Password;
+                user.IsActive = true;
+                user.Email = obj.Email;
+                user.EmployeeID = emp.EmployeeID;
+                db.UsersAccounts.Add(user);
 
                 int count = db.SaveChanges();
                 if (count > 0)
                 {
                     TempData["msg"] = "<script>alert('Save Successfully !');</script>";
-                    int id = emp.EmployeeId;
+                    //int id = emp.EmployeeId;
 
                     return RedirectToAction("Dummy");
                 }
@@ -171,6 +211,8 @@ namespace CSharpRDL.Controllers
 
 
             }
+            var department = db.departments.ToList();
+            ViewBag.DepartmentList = new SelectList(department, "department_id", "department_name");
 
             return View(obj);
         }
@@ -181,43 +223,65 @@ namespace CSharpRDL.Controllers
             //{
             //    return RedirectToAction("Login", "Login");
             //}
-            var Employee = db.Employee201file.Find(id);
-            if (Employee == null)
-            {
-                //return View();
-                return HttpNotFound();
+            var employee = db.EmployeeDetails.Find(id);
 
+            if (employee == null)
+            {
+                return HttpNotFound();
             }
-            return View("EditEmployee", Employee);
+
+            if (employee.ProfileImg != null)
+            {
+                employee.ImgBase64 = Convert.ToBase64String(employee.ProfileImg);
+                employee.ImgUrl = string.Format("data:image/png;base64,{0}", employee.ImgBase64);
+            }
+
+            var departments = db.departments.Where(c => c.IsActive == true).ToList();
+            var selectedDepartment = db.departments.FirstOrDefault(c => c.department_name == employee.Department);
+
+            ViewBag.DeptList = new SelectList(departments, "department_name", "department_name", selectedDepartment?.department_name);
+
+            return View("EditEmployee", employee);
         }
         [HttpPost]
-        public ActionResult EditEmployee(Employee201file emp, HttpPostedFileBase imageFiles)
+        public ActionResult EditEmployee(EmployeeDetail emp, HttpPostedFileBase imageFiles)
         {
             if (ModelState.IsValid)
             {
-                string Filename = Path.GetFileName(imageFiles.FileName);
-                string path = Path.Combine(Server.MapPath("~/Images/"), Filename);
-
-                emp.ImagePath = path;
-
-                imageFiles.SaveAs(Server.MapPath("~/Images/" + imageFiles.FileName));
-
-                emp.ProfileImg = new byte[imageFiles.ContentLength];
-                imageFiles.InputStream.Read(emp.ProfileImg, 0, imageFiles.ContentLength);
-                db.Entry(emp).State = EntityState.Modified;
-                db.SaveChanges();
-                int count = db.SaveChanges();
-                if (count > 0)
+                if (imageFiles != null && imageFiles.ContentLength > 0)
                 {
-                    TempData["msg"] = "<script>alert('Updated Successfully !');</script>";
-                    int id = emp.EmployeeId;
+                    string Filename = Path.GetFileName(imageFiles.FileName);
+                    string path = Path.Combine(Server.MapPath("~/Images/"), Filename);
 
-                    return RedirectToAction("Dummy");
+                    emp.ImagePath = path;
+
+                    imageFiles.SaveAs(Server.MapPath("~/Images/" + imageFiles.FileName));
+
+                    byte[] imageData = new byte[imageFiles.ContentLength];
+                    imageFiles.InputStream.Read(imageData, 0, imageFiles.ContentLength);
+                    emp.ProfileImg = imageData;
+
                 }
                 else
                 {
-                    ViewBag.msg = "Not Saved";
+                    string Url = emp.ImagePath;
+                    byte[] convertedUrl;
+
+                    WebClient w = new WebClient();
+                    convertedUrl = w.DownloadData(Url);
+                    emp.ProfileImg = convertedUrl;
                 }
+
+                emp.EditedDate = DateTime.Now;
+                var selectedDept = db.departments.FirstOrDefault(c => c.department_name == emp.Department);
+                emp.Department = selectedDept.department_name;
+
+
+                db.Entry(emp).State = EntityState.Modified;
+                db.SaveChanges();
+
+                TempData["msg"] = "<script>alert('Updated Successfully !');</script>";
+                return RedirectToAction("Dummy");
 
             }
             return View();

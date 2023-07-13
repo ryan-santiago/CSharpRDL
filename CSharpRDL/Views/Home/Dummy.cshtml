@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CSharpRDL.Models.Employee201file>
+﻿@model IEnumerable<CSharpRDL.Models.EmployeeDetail>
 @{
     ViewBag.Title = "Dummy";
     Layout = "~/Views/Shared/_DashboardLayoutPage.cshtml";
@@ -49,6 +49,7 @@
                                 <thead>
                                     <tr>
                                         <th><h6></h6></th>
+                                        <th><h6>Employee Number</h6></th>
                                         <th><h6>Firstname</h6></th>
                                         <th><h6>Lastname</h6></th>
                                         <th><h6>Middlename</h6></th>
@@ -69,8 +70,8 @@
                                                 <div class="lead">
                                                     <div class="lead-image">
                                                         @{
-                                                            var base64 = Convert.ToBase64String(item.ProfileImg);
-                                                            var imgsrc = string.Format("data:image/gif;base64,{0}", base64);
+                                                            var base64 = (item.ProfileImg == null || item.ProfileImg.Length == 0) ? null : Convert.ToBase64String(item.ProfileImg);
+                                                            var imgsrc = string.IsNullOrEmpty(base64) ? "/Images/undraw_profile.svg" : string.Format("data:image/gif;base64,{0}", base64);
                                                         }
                                                         <img src="@imgsrc"
                                                              alt="" />
@@ -81,7 +82,10 @@
                                                 </div>
                                             </td>
                                             <td class="min-width">
-                                                <p><a href="@Url.Action("ViewDetails", "Home", new { id = item.EmployeeId })">@item.Firstname</a></p>
+                                                <p><a href="@Url.Action("ViewDetails", "Home", new { id = item.ID })">@item.EmployeeID</a></p>
+                                            </td>
+                                            <td class="min-width">
+                                                <p>@item.Firstname</p>
                                             </td>
                                             <td class="min-width">
                                                 <p>@item.Lastname</p>
@@ -107,12 +111,12 @@
                                             <td>
                                                 <div class="action">
                                                     <button class="text-primary">
-                                                        <a href="@Url.Action("EditEmployee", "Home", new { id = item.EmployeeId })">
+                                                        <a href="@Url.Action("EditEmployee", "Home", new { id = item.ID })">
                                                             <i class="lni lni-pencil-alt"></i>
                                                         </a>
                                                     </button>
                                                     <button class="text-danger">
-                                                        <a href="@Url.Action("Delete", "Home", new { id = item.EmployeeId })">
+                                                        <a href="@Url.Action("Delete", "Home", new { id = item.ID })">
                                                             <i class="lni lni-trash-can"></i>
                                                         </a>
                                                     </button>

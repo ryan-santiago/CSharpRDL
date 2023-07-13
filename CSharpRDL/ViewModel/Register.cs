@@ -9,6 +9,7 @@ namespace CSharpRDL.ViewModel
 {
     public class Register
     {
+        //public string EmployeeID { get; set; }
         [Display(Name = "Firstname")]
         [Required(ErrorMessage = "Please enter firstname")]
         public string Firstname { get; set; }
@@ -37,10 +38,14 @@ namespace CSharpRDL.ViewModel
 
         public Nullable<int> Age { get; set; }
         [Display(Name = "Department")]
+        [Required(ErrorMessage = "Please Select Department")]
         public string Department { get; set; }
         public byte[] ProfileImg { get; set; }
 
         public string ImagePath { get; set; }
+        [Required(ErrorMessage = "Please Select Gender")]
+        [Display(Name = "Gender")]
+        public string Gender { get; set; }
 
         [Required(ErrorMessage = "Please enter Username")]
         [Display(Name = "Username")]
@@ -61,5 +66,7 @@ namespace CSharpRDL.ViewModel
         public string Email { get; set; }
         public Nullable<int> EmployeeId { get; set; }
         public Nullable<bool> IsActive { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
+
     }
 }

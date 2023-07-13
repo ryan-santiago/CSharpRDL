@@ -17,11 +17,11 @@ namespace CSharpRDL.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(User user)
+        public ActionResult Login(UsersAccount user)
         {
             if (ModelState.IsValid)
             {
-                var cred = db.UsersAccount.Where(model => model.Username == user.Username && model.Password == user.Password && model.IsActive == true).FirstOrDefault();
+                var cred = db.UsersAccounts.Where(model => model.Username == user.Username && model.Password == user.Password && model.IsActive == true).FirstOrDefault();
                 if (cred != null)
                 {
                     Session["Username"] = user.Username;

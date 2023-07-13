@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CSharpRDL.Models.Employee201file>
+﻿@model IEnumerable<CSharpRDL.Models.EmployeeDetail>
 @using Microsoft.Reporting.WebForms
 @{
     ViewBag.Title = "ReportGenerator";
@@ -31,7 +31,8 @@
                 </select>
             </div>*@
             <div class="col-md-4">
-                <input type="text" class="form-control" id="searchText" placeholder="Enter Department">
+                @Html.DropDownList("searchText" , ViewBag.DepartmentList as SelectList, "Select Department", new { @class = "form-control" , @id = "searchText" })
+                @*<input type="text" class="form-control" id="searchText" placeholder="Enter Department">*@
             </div>
             <div class="col-md-3">
                 <button type="button" id="btnSearch" onclick="GenReport()" class="btn btn-raised btn-primary btn-block">Generate Report</button>

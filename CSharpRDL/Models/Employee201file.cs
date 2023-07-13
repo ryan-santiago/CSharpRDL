@@ -14,12 +14,6 @@ namespace CSharpRDL.Models
     
     public partial class Employee201file
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Employee201file()
-        {
-            this.Users = new HashSet<User>();
-        }
-    
         public int EmployeeId { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
@@ -32,8 +26,5 @@ namespace CSharpRDL.Models
         public string Department { get; set; }
         public byte[] ProfileImg { get; set; }
         public string ImagePath { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> Users { get; set; }
     }
 }

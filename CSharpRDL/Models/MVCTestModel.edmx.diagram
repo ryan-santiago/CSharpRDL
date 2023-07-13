@@ -6,9 +6,9 @@
     <edmx:Diagrams>
       <Diagram DiagramId="bc7e5f77a89c441fbdfab0806e6a52f5" Name="Diagram1">
         <EntityTypeShape EntityType="MVCTestModel.Employee201file" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MVCTestModel.User" Width="1.5" PointX="3.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MVCTestModel.department" Width="1.5" PointX="5.375" PointY="1" />
-        <AssociationConnector Association="MVCTestModel.fk_Users_Employee" />
+        <EntityTypeShape EntityType="MVCTestModel.EmployeeDetail" Width="1.5" PointX="7.625" PointY="0.75" />
+        <EntityTypeShape EntityType="MVCTestModel.department" Width="1.5" PointX="5.25" PointY="0.75" />
+        <EntityTypeShape EntityType="MVCTestModel.UsersAccount" Width="1.5" PointX="3.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

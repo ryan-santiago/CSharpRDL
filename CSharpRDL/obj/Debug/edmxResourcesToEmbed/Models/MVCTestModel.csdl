@@ -16,46 +16,51 @@
     <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="ProfileImg" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Users" Relationship="MVCTestModel.fk_Users_Employee" FromRole="Employee201file" ToRole="User" />
-  </EntityType>
-  <EntityType Name="User">
-    <Key>
-      <PropertyRef Name="UserId" />
-    </Key>
-    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="IsActive" Type="Boolean" />
-    <Property Name="EmployeeId" Type="Int32" />
-    <NavigationProperty Name="Employee201file" Relationship="MVCTestModel.fk_Users_Employee" FromRole="User" ToRole="Employee201file" />
   </EntityType>
   <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Employee201file" EntityType="Self.Employee201file" />
-    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="EmployeeDetails" EntityType="MVCTestModel.EmployeeDetail" />
     <EntitySet Name="departments" EntityType="MVCTestModel.department" />
-    <AssociationSet Name="fk_Users_Employee" Association="MVCTestModel.fk_Users_Employee">
-      <End Role="Employee201file" EntitySet="Employee201file" />
-      <End Role="User" EntitySet="Users" />
-    </AssociationSet>
+    <EntitySet Name="UsersAccounts" EntityType="MVCTestModel.UsersAccount" />
   </EntityContainer>
+  <EntityType Name="EmployeeDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeID" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Firstname" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Lastname" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Middlename" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Suffix" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ContactNo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Birthdate" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Age" Type="Int32" />
+    <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ProfileImg" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+    <Property Name="Gender" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="EditedDate" Type="DateTime" Precision="3" />
+  </EntityType>
   <EntityType Name="department">
     <Key>
       <PropertyRef Name="department_id" />
     </Key>
     <Property Name="department_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="department_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
   </EntityType>
-  <Association Name="fk_Users_Employee">
-    <End Type="MVCTestModel.Employee201file" Role="Employee201file" Multiplicity="0..1" />
-    <End Type="MVCTestModel.User" Role="User" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Employee201file">
-        <PropertyRef Name="EmployeeId" />
-      </Principal>
-      <Dependent Role="User">
-        <PropertyRef Name="EmployeeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
+  <EntityType Name="UsersAccount">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="EmployeeID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
 </Schema>
