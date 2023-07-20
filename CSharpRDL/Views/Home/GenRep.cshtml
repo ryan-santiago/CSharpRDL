@@ -1,0 +1,34 @@
+﻿@model List<byte[]>
+@{
+    ViewBag.Title = "GenRep";
+    Layout = "~/Views/Shared/_DashboardLayoutPage.cshtml";
+}
+
+<h2>GenRep</h2>
+
+@*<object data="@Url.Action("GenRep", "Home")" type="application/pdf" width="100%" height="600px">
+        <embed src="@Url.Action("GenRep", "Home")" type="application/pdf" />
+    </object>*@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate Report</title>
+</head>
+<body>
+    <h1>Employee Report</h1>
+    @*@for (var i = 0; i < Model.Count; i++)
+        {
+            var base64 = Convert.ToBase64String(Model[i]);
+            <object data="data:application/pdf;base64,@base64" type="application/pdf" width="100%" height="600px" style="page-break-after: always;">
+                <embed src="data:application/pdf;base64,@base64" type="application/pdf" />
+            </object>
+        }*@
+    <object data="@ViewBag.PDFData" type="application/pdf" width="100%" height="600px"></object>
+    <br />
+    <a href="@Url.Action("DownloadReport", "Home")">Download Report</a>
+</body>
+</body>
+</html>
+

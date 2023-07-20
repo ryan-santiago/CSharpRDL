@@ -2,6 +2,8 @@
 using CSharpRDL.Models;
 using CSharpRDL.MVCTestDataSetTableAdapters;
 using CSharpRDL.ViewModel;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 using Microsoft.Reporting.WebForms;
 using System;
 using System.Collections.Generic;
@@ -121,13 +123,14 @@ namespace CSharpRDL.Controllers
             return View();
         }
 
-        public ActionResult ViewDetails()
+        public ActionResult ViewDetails(int id)
         {
             //if (Session["Username"] == null)
             //{
             //    return RedirectToAction("Login", "Login");
             //}
-            return View();
+            var employeeDetails = db.EmployeeDetails.Find(id);
+            return View(employeeDetails);
         }
 
         [HttpPost]
@@ -294,11 +297,158 @@ namespace CSharpRDL.Controllers
             return RedirectToAction("Dummy");
         }
 
-        public ActionResult TEST()
+        public ActionResult ViewReport(int id)
         {
-            //db.Entry(emp).State = EntityState.Modified;
-            //db.SaveChanges();
-            return RedirectToAction("Dummy");
+            //if (Session["Username"] == null)
+            //{
+            //    return RedirectToAction("Login", "Login");
+            //}
+            EmployeeDetail employee = db.EmployeeDetails.FirstOrDefault(e => e.ID == id);
+
+            LocalReport report = new LocalReport();
+            report.ReportPath = Server.MapPath("~/Reports/Emp201File.rdlc");
+            report.DataSources.Add(new ReportDataSource("Emp201", new[] { employee }));
+            //report.SetParameters(new ReportParameter("PageCount", "1"));
+
+
+            byte[] pdfBytes = report.Render("PDF");
+            return File(pdfBytes, "application/pdf");
+        }
+
+        public ActionResult GenReport()
+        {
+            // Fetch the employee data from the database using Entity Framework
+            List<EmployeeDetail> employees = GetEmployees();
+
+            // Set the report data source
+            ReportDataSource reportDataSource = new ReportDataSource("Emp201", employees);
+
+            // Provide the RDLC report file path
+            string reportPath = Server.MapPath("~/Reports/Emp201File.rdlc");
+
+            // Create the report viewer and set its properties
+            LocalReport localReport = new LocalReport();
+            localReport.ReportPath = reportPath;
+            localReport.DataSources.Add(reportDataSource);
+
+            // Render the report
+            byte[] renderedBytes;
+            string mimeType;
+            string encoding;
+            string fileNameExtension;
+
+            renderedBytes = localReport.Render("PDF", null, out mimeType, out encoding, out fileNameExtension, out string[] streams, out Warning[] warnings);
+
+            // Return the report as a FileResult
+            return File(renderedBytes, "application/pdf", "Employee201Form.pdf");
+        }
+
+        public ActionResult GenRep()
+        {
+            using (var dbContext = new DBEntities())
+            {
+                var employees = dbContext.EmployeeDetails.ToList();
+                if (employees.Count == 0)
+                    return HttpNotFound();
+
+                LocalReport localReport = new LocalReport();
+                localReport.ReportPath = Server.MapPath("~/Reports/Emp201File.rdlc");
+                string reportType = "PDF";
+                string mimeType;
+                string encoding;
+                string fileNameExtension;
+                Warning[] warnings;
+                string[] streams;
+                byte[] renderedBytes;
+
+                List<byte[]> employeeReports = new List<byte[]>();
+
+                foreach (var employee in employees)
+                {
+                    localReport.DataSources.Clear();
+                    localReport.DataSources.Add(new ReportDataSource("Emp201", new List<EmployeeDetail> { employee }));
+                    renderedBytes = localReport.Render(reportType, "", out mimeType, out encoding, out fileNameExtension, out streams, out warnings);
+                    employeeReports.Add(renderedBytes);
+                }
+
+                byte[] mergedReports = MergePDFs(employeeReports);
+
+                string base64 = Convert.ToBase64String(mergedReports);
+                string dataUrl = "data:application/pdf;base64," + base64;
+
+                ViewBag.PDFData = dataUrl;
+
+                return View();
+
+            }
+        }
+
+        private byte[] MergePDFs(List<byte[]> pdfs)
+        {
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                Document document = new Document();
+                PdfCopy copy = new PdfCopy(document, memoryStream);
+                document.Open();
+
+                foreach (var pdf in pdfs)
+                {
+                    using (PdfReader reader = new PdfReader(pdf))
+                    {
+                        for (int page = 1; page <= reader.NumberOfPages; page++)
+                        {
+                            PdfImportedPage importedPage = copy.GetImportedPage(reader, page);
+                            copy.AddPage(importedPage);
+                        }
+                    }
+                }
+
+                document.Close();
+                return memoryStream.ToArray();
+            }
+        }
+
+        public ActionResult DownloadReport()
+        {
+            using (var dbContext = new DBEntities())
+            {
+                var employees = dbContext.EmployeeDetails.ToList();
+                if (employees.Count == 0)
+                    return HttpNotFound();
+
+                LocalReport localReport = new LocalReport();
+                localReport.ReportPath = Server.MapPath("~/Reports/Emp201File.rdlc");
+                string reportType = "PDF";
+                string mimeType;
+                string encoding;
+                string fileNameExtension;
+                Warning[] warnings;
+                string[] streams;
+                byte[] renderedBytes;
+
+                List<byte[]> employeeReports = new List<byte[]>();
+
+                foreach (var employee in employees)
+                {
+                    localReport.DataSources.Clear();
+                    localReport.DataSources.Add(new ReportDataSource("Emp201", new List<EmployeeDetail> { employee }));
+                    renderedBytes = localReport.Render(reportType, "", out mimeType, out encoding, out fileNameExtension, out streams, out warnings);
+                    employeeReports.Add(renderedBytes);
+                }
+
+                byte[] mergedReports = MergePDFs(employeeReports);
+
+                return File(mergedReports, "application/pdf", "EmployeeReports.pdf");
+            }
+        }
+
+        private List<EmployeeDetail> GetEmployees()
+        {
+            List<EmployeeDetail> employees;
+
+            employees = db.EmployeeDetails.ToList();
+
+            return employees;
         }
     }
 }

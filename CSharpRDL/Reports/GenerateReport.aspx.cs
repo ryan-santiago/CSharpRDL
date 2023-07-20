@@ -22,13 +22,13 @@ namespace CSharpRDL.Reports
                     searchText = Request.QueryString["searchText"].ToString();
                 }
 
-                List<Employee201file> employee = null;
+                List<EmployeeDetail> employee = null;
                 using (var _context = new DBEntities())
                 {
-                    employee = _context.Employee201file.Where(t => t.Department.Contains(searchText)).OrderBy(a => a.EmployeeId).ToList();
+                    employee = _context.EmployeeDetails.Where(t => t.Department.Contains(searchText)).OrderBy(a => a.EmployeeID).ToList();
                     ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Reports/EmpReport.rdlc");
                     ReportViewer1.LocalReport.DataSources.Clear();
-                    ReportDataSource rdc = new ReportDataSource("EmpData", employee);
+                    ReportDataSource rdc = new ReportDataSource("EmpDetails", employee);
                     ReportViewer1.LocalReport.DataSources.Add(rdc);
                     ReportViewer1.LocalReport.Refresh();
                     ReportViewer1.DataBind();

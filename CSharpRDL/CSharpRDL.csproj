@@ -44,6 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <HintPath>..\packages\CrystalReports.Engine.13.0.4003\lib\net40\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
     </Reference>
@@ -108,6 +111,12 @@
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.3, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.3\lib\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=2.0.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.12\lib\net45\log4net.dll</HintPath>
@@ -285,6 +294,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="EmpData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmpData.xsd</DependentUpon>
+    </Compile>
     <Compile Include="EmpDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -344,6 +358,7 @@
       <DependentUpon>GenerateReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="ViewModel\UserLogin.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -413,6 +428,17 @@
     <Content Include="EmpDataSet.xsc">
       <DependentUpon>EmpDataSet.xsd</DependentUpon>
     </Content>
+    <Content Include="EmpData.xsc">
+      <DependentUpon>EmpData.xsd</DependentUpon>
+    </Content>
+    <None Include="EmpData.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EmpData.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="EmpData.xss">
+      <DependentUpon>EmpData.xsd</DependentUpon>
+    </Content>
     <None Include="EmpDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>EmpDataSet.Designer.cs</LastGenOutput>
@@ -456,8 +482,10 @@
     <Content Include="Views\Home\AddEmployee.cshtml" />
     <Content Include="Views\Home\EditEmployee.cshtml" />
     <Content Include="Views\Home\TEST.cshtml" />
-    <Content Include="Views\Home\ViewDetails.cshtml" />
     <Content Include="Views\Home\EditEmployee1.cshtml" />
+    <Content Include="Views\Home\ViewDetails.cshtml" />
+    <Content Include="Views\Home\ViewReport.cshtml" />
+    <Content Include="Views\Home\GenRep.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -472,6 +500,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\Emp201File.rdlc" />
+    <EmbeddedResource Include="Reports\Employee201Report.rdlc" />
     <EmbeddedResource Include="Reports\EmpReport.rdlc" />
     <EmbeddedResource Include="Reports\Report.rdlc" />
     <EmbeddedResource Include="Reports\Report1.rdlc" />

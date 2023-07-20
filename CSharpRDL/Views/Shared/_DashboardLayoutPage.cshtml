@@ -312,9 +312,15 @@
                                         aria-expanded="false">
                                     <div class="profile-info">
                                         <div class="info">
-                                            <h6>@Session["Username"]</h6>
+                                            <h6>@Session["Lastname"] , @Session["Firstname"] @Session["Middlename"]. </h6>
                                             <div class="image">
-                                                <img src="assets/images/profile/profile-image.png"
+                                                @{
+                                                    var Image = Session["ProfileImg"];
+                                                    byte[] ProfImage = (byte[])Session["ProfileImg"]; ;
+                                                    var base64 = (ProfImage == null || ProfImage.Length == 0) ? null : Convert.ToBase64String(ProfImage);
+                                                    var imgsrc = string.IsNullOrEmpty(base64) ? "/Images/undraw_profile.svg" : string.Format("data:image/gif;base64,{0}", base64);
+                                                }
+                                                <img src="@imgsrc"
                                                      alt="" />
                                                 <span class="status"></span>
                                             </div>

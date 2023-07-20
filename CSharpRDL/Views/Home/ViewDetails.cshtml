@@ -1,4 +1,4 @@
-﻿@model CSharpRDL.Models.Employee201file
+﻿@model CSharpRDL.Models.EmployeeDetail
 
 @{
     ViewBag.Title = "ViewDetails";
@@ -8,15 +8,15 @@
 <h2>ViewDetails</h2>
 
 <div>
-    <h4>Employee201file</h4>
+    <h4>EmployeeDetail</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.EmployeeId)
+            @Html.DisplayNameFor(model => model.EmployeeID)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.EmployeeId)
+            @Html.DisplayFor(model => model.EmployeeID)
         </dd>
 
         <dt>
@@ -99,9 +99,48 @@
             @Html.DisplayFor(model => model.ImagePath)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EditedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EditedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImgBase64)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImgBase64)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImgUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImgUrl)
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

@@ -24,7 +24,13 @@ namespace CSharpRDL.Controllers
                 var cred = db.UsersAccounts.Where(model => model.Username == user.Username && model.Password == user.Password && model.IsActive == true).FirstOrDefault();
                 if (cred != null)
                 {
+                    var EmployeeID = cred.EmployeeID;
+                    var details = db.EmployeeDetails.Where(e => e.EmployeeID == EmployeeID).FirstOrDefault();
+                    Session["Firstname"] = details.Firstname;
+                    Session["Lastname"] = details.Lastname;
+                    Session["Middlename"] = details.Middlename;
                     Session["Username"] = user.Username;
+                    Session["ProfileImg"] = details.ProfileImg;
                     return RedirectToAction("Index", "Home");
                 }
                 else

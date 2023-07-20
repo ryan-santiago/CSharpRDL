@@ -1,4 +1,4 @@
-﻿@model CSharpRDL.Models.User
+﻿@model CSharpRDL.Models.UsersAccount
 @{
     ViewBag.Title = "Login";
 }
@@ -59,7 +59,7 @@
                         @Html.LabelFor(model => model.Password)
                         @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                        @ViewBag.ErrorMessage
+                        <label style="color:red">@ViewBag.ErrorMessage</label>
                     </div>
                     <br />
                     <button type="submit" name="login" class="btn btn-primary w-100">Login</button>

@@ -226,7 +226,6 @@ C:\Users\Mark Well Mapanao\source\repos\GIT\CSharpRDL2\CSharpRDL\CSharpRDL\bin\S
 C:\Users\Mark Well Mapanao\source\repos\GIT\CSharpRDL2\CSharpRDL\CSharpRDL\bin\System.Web.Webpages.Deployment.dll
 C:\Users\Mark Well Mapanao\source\repos\GIT\CSharpRDL2\CSharpRDL\CSharpRDL\bin\System.Web.Webpages.dll
 C:\Users\Mark Well Mapanao\source\repos\GIT\CSharpRDL2\CSharpRDL\CSharpRDL\bin\System.Web.Webpages.Razor.dll
-C:\Users\Mark Well Mapanao\source\repos\GIT\CSharpRDL2\CSharpRDL\CSharpRDL\bin\EnvDTE.dll
 C:\Users\Mark Well Mapanao\source\repos\GIT\CSharpRDL2\CSharpRDL\CSharpRDL\bin\Microsoft.ReportViewer.WinForms.dll
 C:\Users\Mark Well Mapanao\source\repos\GIT\CSharpRDL2\CSharpRDL\CSharpRDL\bin\EntityFramework.xml
 C:\Users\Mark Well Mapanao\source\repos\GIT\CSharpRDL2\CSharpRDL\CSharpRDL\bin\EntityFramework.SqlServer.xml
@@ -391,3 +390,6 @@ C:\Users\Mark Well Mapanao\source\repos\GIT\CSharpRDL2\CSharpRDL\CSharpRDL\obj\D
 C:\Users\Mark Well Mapanao\source\repos\GIT\CSharpRDL2\CSharpRDL\CSharpRDL\obj\Debug\CSharpRDL.csproj.CopyComplete
 C:\Users\Mark Well Mapanao\source\repos\GIT\CSharpRDL2\CSharpRDL\CSharpRDL\obj\Debug\CSharpRDL.dll
 C:\Users\Mark Well Mapanao\source\repos\GIT\CSharpRDL2\CSharpRDL\CSharpRDL\obj\Debug\CSharpRDL.pdb
+C:\Users\Mark Well Mapanao\source\repos\GIT\CSharpRDL2\CSharpRDL\CSharpRDL\bin\BouncyCastle.Crypto.dll
+C:\Users\Mark Well Mapanao\source\repos\GIT\CSharpRDL2\CSharpRDL\CSharpRDL\bin\itextsharp.dll
+C:\Users\Mark Well Mapanao\source\repos\GIT\CSharpRDL2\CSharpRDL\CSharpRDL\bin\itextsharp.xml
