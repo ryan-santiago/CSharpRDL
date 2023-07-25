@@ -192,8 +192,12 @@ namespace CSharpRDL.Controllers
                 db.EmployeeDetails.Add(emp);
                 db.SaveChanges();
 
+                HashPassword hashPassword = new HashPassword();
+                //hashPassword.Password(obj.Password); 
+
                 user.Username = obj.Username;
-                user.Password = obj.Password;
+                //user.Password = obj.Password;
+                user.Password = hashPassword.Password(obj.Password);
                 user.IsActive = true;
                 user.Email = obj.Email;
                 user.EmployeeID = emp.EmployeeID;

@@ -335,6 +335,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MVCTestModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\HashPassword.cs" />
     <Compile Include="ViewModel\Register.cs" />
     <Compile Include="ViewModel\User1.cs" />
     <Compile Include="MVCTestDataSet.Designer.cs">

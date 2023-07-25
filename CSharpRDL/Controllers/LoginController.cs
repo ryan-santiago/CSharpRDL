@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CSharpRDL.Models;
+using CSharpRDL.ViewModel;
 
 namespace CSharpRDL.Controllers
 {
@@ -21,7 +22,11 @@ namespace CSharpRDL.Controllers
         {
             if (ModelState.IsValid)
             {
-                var cred = db.UsersAccounts.Where(model => model.Username == user.Username && model.Password == user.Password && model.IsActive == true).FirstOrDefault();
+                HashPassword hashPassword = new HashPassword();
+
+                string hashedInputPassword = hashPassword.Password(user.Password);
+
+                var cred = db.UsersAccounts.Where(model => model.Username == user.Username && model.Password == hashedInputPassword && model.IsActive == true).FirstOrDefault();
                 if (cred != null)
                 {
                     var EmployeeID = cred.EmployeeID;
