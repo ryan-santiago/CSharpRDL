@@ -30,6 +30,8 @@ namespace CSharpRDL.Models
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public string Gender { get; set; }
         public Nullable<System.DateTime> EditedDate { get; set; }
+        public Nullable<bool> Isdelete { get; set; }
+        public Nullable<System.DateTime> DeleteDate { get; set; }
 
         public string ImgBase64 { get; set; }
         public string ImgUrl { get; set; }

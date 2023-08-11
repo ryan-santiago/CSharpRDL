@@ -22,6 +22,8 @@
     <EntitySetMapping Name="EmployeeDetails">
       <EntityTypeMapping TypeName="MVCTestModel.EmployeeDetail">
         <MappingFragment StoreEntitySet="EmployeeDetails">
+          <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
+          <ScalarProperty Name="Isdelete" ColumnName="Isdelete" />
           <ScalarProperty Name="EditedDate" ColumnName="EditedDate" />
           <ScalarProperty Name="Gender" ColumnName="Gender" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />

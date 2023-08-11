@@ -42,9 +42,10 @@ namespace CSharpRDL.Controllers
             //    return RedirectToAction("Login", "Login");
             //}
 
-            var AllEmp = db.EmployeeDetails.ToList();
+            //var AllEmp = db.EmployeeDetails.ToList();
+            var All = db.EmployeeDetails.Where(c => c.Isdelete == false).ToList();
 
-            return View(AllEmp);
+            return View(All);
         }
 
         public ActionResult BIR_BCS()
@@ -168,6 +169,7 @@ namespace CSharpRDL.Controllers
                 emp.ImagePath = path;
                 emp.Gender = obj.Gender;
                 emp.CreatedDate = DateTime.Today;
+                emp.Isdelete = false;
 
                 imageFiles.SaveAs(Server.MapPath("~/Images/" + imageFiles.FileName));
 
@@ -279,6 +281,7 @@ namespace CSharpRDL.Controllers
                     emp.ProfileImg = convertedUrl;
                 }
 
+                emp.Isdelete = false;
                 emp.EditedDate = DateTime.Now;
                 var selectedDept = db.departments.FirstOrDefault(c => c.department_name == emp.Department);
                 emp.Department = selectedDept.department_name;
@@ -351,7 +354,7 @@ namespace CSharpRDL.Controllers
         {
             using (var dbContext = new DBEntities())
             {
-                var employees = dbContext.EmployeeDetails.ToList();
+                var employees = dbContext.EmployeeDetails.Where(c => c.Isdelete == false).ToList();
                 if (employees.Count == 0)
                     return HttpNotFound();
 
@@ -453,6 +456,23 @@ namespace CSharpRDL.Controllers
             employees = db.EmployeeDetails.ToList();
 
             return employees;
+        }
+
+        public ActionResult DeleteEmployee(int id)
+        {
+            var employee = db.EmployeeDetails.FirstOrDefault(x => x.ID == id);
+
+            if (employee == null)
+            {
+                return HttpNotFound();
+            }
+
+            employee.Isdelete = true;
+            employee.DeleteDate = DateTime.Now;
+            db.SaveChanges();
+
+            TempData["msg"] = "<script>alert('Deleted Successfully !');</script>";
+            return RedirectToAction("Dummy");
         }
     }
 }

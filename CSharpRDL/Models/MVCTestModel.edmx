@@ -50,6 +50,8 @@
           <Property Name="CreatedDate" Type="date" />
           <Property Name="Gender" Type="varchar" MaxLength="20" />
           <Property Name="EditedDate" Type="datetime" />
+          <Property Name="Isdelete" Type="bit" />
+          <Property Name="DeleteDate" Type="datetime" />
         </EntityType>
         <EntityType Name="UsersAccount">
           <Key>
@@ -115,6 +117,8 @@
           <Property Name="CreatedDate" Type="DateTime" Precision="0" />
           <Property Name="Gender" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="EditedDate" Type="DateTime" Precision="3" />
+          <Property Name="Isdelete" Type="Boolean" />
+          <Property Name="DeleteDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="department">
           <Key>
@@ -162,6 +166,8 @@
           <EntitySetMapping Name="EmployeeDetails">
             <EntityTypeMapping TypeName="MVCTestModel.EmployeeDetail">
               <MappingFragment StoreEntitySet="EmployeeDetails">
+                <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
+                <ScalarProperty Name="Isdelete" ColumnName="Isdelete" />
                 <ScalarProperty Name="EditedDate" ColumnName="EditedDate" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />

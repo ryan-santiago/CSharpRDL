@@ -66,6 +66,7 @@ namespace CSharpRDL.ViewModel
         public string Email { get; set; }
         public Nullable<int> EmployeeId { get; set; }
         public Nullable<bool> IsActive { get; set; }
+        public Nullable<bool> IsDelete { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
 
     }

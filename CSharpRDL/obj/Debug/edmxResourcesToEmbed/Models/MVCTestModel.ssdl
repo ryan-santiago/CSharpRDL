@@ -45,6 +45,8 @@
     <Property Name="CreatedDate" Type="date" />
     <Property Name="Gender" Type="varchar" MaxLength="20" />
     <Property Name="EditedDate" Type="datetime" />
+    <Property Name="Isdelete" Type="bit" />
+    <Property Name="DeleteDate" Type="datetime" />
   </EntityType>
   <EntityType Name="UsersAccount">
     <Key>
