@@ -12,6 +12,7 @@
           <Property Name="department_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="department_name" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="IsActive" Type="bit" />
+          <Property Name="Department_Description" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Employee201file">
           <Key>
@@ -63,6 +64,7 @@
           <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="EmployeeID" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="IsActive" Type="bit" />
+          <Property Name="UserRole" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityContainer Name="MVCTestModelStoreContainer">
           <EntitySet Name="department" EntityType="Self.department" Schema="dbo" store:Type="Tables" />
@@ -127,6 +129,7 @@
           <Property Name="department_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="department_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="IsActive" Type="Boolean" />
+          <Property Name="Department_Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="UsersAccount">
           <Key>
@@ -138,6 +141,7 @@
           <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="EmployeeID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="IsActive" Type="Boolean" />
+          <Property Name="UserRole" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -190,6 +194,7 @@
           <EntitySetMapping Name="departments">
             <EntityTypeMapping TypeName="MVCTestModel.department">
               <MappingFragment StoreEntitySet="department">
+                <ScalarProperty Name="Department_Description" ColumnName="Department_Description" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="department_name" ColumnName="department_name" />
                 <ScalarProperty Name="department_id" ColumnName="department_id" />
@@ -199,6 +204,7 @@
           <EntitySetMapping Name="UsersAccounts">
             <EntityTypeMapping TypeName="MVCTestModel.UsersAccount">
               <MappingFragment StoreEntitySet="UsersAccount">
+                <ScalarProperty Name="UserRole" ColumnName="UserRole" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="Email" ColumnName="Email" />

@@ -20,5 +20,6 @@ namespace CSharpRDL.Models
         public string Email { get; set; }
         public string EmployeeID { get; set; }
         public Nullable<bool> IsActive { get; set; }
+        public string UserRole { get; set; }
     }
 }

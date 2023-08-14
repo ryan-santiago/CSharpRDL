@@ -7,6 +7,7 @@
     <Property Name="department_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="department_name" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="IsActive" Type="bit" />
+    <Property Name="Department_Description" Type="varchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="Employee201file">
     <Key>
@@ -58,6 +59,7 @@
     <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="EmployeeID" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="IsActive" Type="bit" />
+    <Property Name="UserRole" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityContainer Name="MVCTestModelStoreContainer">
     <EntitySet Name="department" EntityType="Self.department" Schema="dbo" store:Type="Tables" />

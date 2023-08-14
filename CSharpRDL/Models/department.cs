@@ -17,5 +17,6 @@ namespace CSharpRDL.Models
         public int department_id { get; set; }
         public string department_name { get; set; }
         public Nullable<bool> IsActive { get; set; }
+        public string Department_Description { get; set; }
     }
 }

@@ -18,7 +18,7 @@ namespace CSharpRDL.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(UsersAccount user)
+        public ActionResult Login(Login user)
         {
             if (ModelState.IsValid)
             {
@@ -35,7 +35,9 @@ namespace CSharpRDL.Controllers
                     Session["Lastname"] = details.Lastname;
                     Session["Middlename"] = details.Middlename;
                     Session["Username"] = user.Username;
+                    Session["UserRole"] = cred.UserRole;
                     Session["ProfileImg"] = details.ProfileImg;
+                    Session["EmployeeID"] = EmployeeID;
                     return RedirectToAction("Index", "Home");
                 }
                 else

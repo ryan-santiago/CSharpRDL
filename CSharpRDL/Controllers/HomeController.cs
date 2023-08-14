@@ -37,10 +37,10 @@ namespace CSharpRDL.Controllers
 
         public ActionResult Dummy()
         {
-            //if (Session["Username"] == null)
-            //{
-            //    return RedirectToAction("Login", "Login");
-            //}
+            if (Session["Username"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
 
             //var AllEmp = db.EmployeeDetails.ToList();
             var All = db.EmployeeDetails.Where(c => c.Isdelete == false).ToList();
@@ -91,11 +91,13 @@ namespace CSharpRDL.Controllers
 
         public ActionResult SystemConfiguration()
         {
-            //if (Session["Username"] == null)
-            //{
-            //    return RedirectToAction("Login", "Login");
-            //}
-            return View();
+            if (Session["Username"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            var retrieveDept = db.departments.Where(c => c.IsActive == true).ToList();
+
+            return View(retrieveDept);
         }
 
         public ActionResult EmployeeReport()
@@ -118,7 +120,7 @@ namespace CSharpRDL.Controllers
 
             //ViewBag.DepartmentList = new SelectList(departments, "department_id", "department_name");
 
-            var department = db.departments.ToList();
+            var department = db.departments.Where(c => c.IsActive == true).ToList();
 
             ViewBag.DepartmentList = new SelectList(department, "department_id", "department_name");
             return View();
@@ -185,7 +187,7 @@ namespace CSharpRDL.Controllers
                 {
                     ViewBag.msg = "Username Already Exists !";
 
-                    var dept1 = db.departments.ToList();
+                    var dept1 = db.departments.Where(c => c.IsActive == true).ToList();
                     ViewBag.DepartmentList = new SelectList(dept1, "department_id", "department_name");
 
                     return View();
@@ -220,7 +222,7 @@ namespace CSharpRDL.Controllers
 
 
             }
-            var department = db.departments.ToList();
+            var department = db.departments.Where(c => c.IsActive == true).ToList();
             ViewBag.DepartmentList = new SelectList(department, "department_id", "department_name");
 
             return View(obj);
@@ -246,7 +248,7 @@ namespace CSharpRDL.Controllers
             }
 
             var departments = db.departments.Where(c => c.IsActive == true).ToList();
-            var selectedDepartment = db.departments.FirstOrDefault(c => c.department_name == employee.Department);
+            var selectedDepartment = db.departments.FirstOrDefault(c => c.department_name == employee.Department );
 
             ViewBag.DeptList = new SelectList(departments, "department_name", "department_name", selectedDepartment?.department_name);
 
@@ -473,6 +475,31 @@ namespace CSharpRDL.Controllers
 
             TempData["msg"] = "<script>alert('Deleted Successfully !');</script>";
             return RedirectToAction("Dummy");
+        }
+
+        public ActionResult SignOut()
+        {
+            Session.Clear();
+            Session.Abandon();
+
+            return RedirectToAction("Login", "Login");
+        }
+
+        public ActionResult ViewProfile(String EmpID)
+        {
+            //if (Session["Username"] == null)
+            //{
+            //    return RedirectToAction("Login", "Login");
+            //}
+            var employeeDetails = db.EmployeeDetails.Where(e => e.EmployeeID == EmpID).FirstOrDefault();
+
+            if (employeeDetails.ProfileImg != null)
+            {
+                employeeDetails.ImgBase64 = Convert.ToBase64String(employeeDetails.ProfileImg);
+                employeeDetails.ImgUrl = string.Format("data:image/png;base64,{0}", employeeDetails.ImgBase64);
+            }
+
+            return View(employeeDetails);
         }
     }
 }

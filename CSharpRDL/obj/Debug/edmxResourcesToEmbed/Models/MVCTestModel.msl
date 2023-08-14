@@ -46,6 +46,7 @@
     <EntitySetMapping Name="departments">
       <EntityTypeMapping TypeName="MVCTestModel.department">
         <MappingFragment StoreEntitySet="department">
+          <ScalarProperty Name="Department_Description" ColumnName="Department_Description" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
           <ScalarProperty Name="department_name" ColumnName="department_name" />
           <ScalarProperty Name="department_id" ColumnName="department_id" />
@@ -55,6 +56,7 @@
     <EntitySetMapping Name="UsersAccounts">
       <EntityTypeMapping TypeName="MVCTestModel.UsersAccount">
         <MappingFragment StoreEntitySet="UsersAccount">
+          <ScalarProperty Name="UserRole" ColumnName="UserRole" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
           <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
           <ScalarProperty Name="Email" ColumnName="Email" />

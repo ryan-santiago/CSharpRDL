@@ -1,9 +1,10 @@
-﻿
+﻿@model IEnumerable<CSharpRDL.Models.department>
 @{
     ViewBag.Title = "SystemConfiguration";
     Layout = "~/Views/Shared/_DashboardLayoutPage.cshtml";
 }
 
+@Html.Raw(TempData["msg"])
 <section class="table-components">
     <div class="container-fluid">
         <!-- ========== title-wrapper start ========== -->
@@ -35,6 +36,66 @@
 
         <!-- ========== title-wrapper end ========== -->
         <!-- ========== tables-wrapper start ========== -->
+        <div class="tables-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card-style">
+                        <h6 class="mb-10">Department List</h6>
+                        <p class="text-sm" align="right">
+                            <a href="/Department/AddDepartment" class="btn primary-btn-outline rounded-md btn-hover">Add Department</a>
+                        </p>
+                        <div class="table-wrapper table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th><h6>Department ID</h6></th>
+                                        <th><h6>Department Name</h6></th>
+                                        <th><h6>Department Description</h6></th>
+                                        <th><h6>Action</h6></th>
+                                    </tr>
+                                    <!-- end table row-->
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td class="min-width">
+                                                <p>@item.department_id</p>
+                                            </td>
+                                            <td class="min-width">
+                                                <p>@item.department_name</p>
+                                            </td>
+                                            <td class="min-width">
+                                                <p>@item.Department_Description</p>
+                                            </td>
+                                            <td>
+                                                <div class="action">
+                                                    <button class="text-primary">
+                                                        <a href="@Url.Action("EditDepartment", "Department", new { id = item.department_id })">
+                                                            <i class="lni lni-pencil-alt"></i>
+                                                        </a>
+                                                    </button>
+                                                    <button class="text-danger">
+                                                        <a href="@Url.Action("DeleteDepartment", "Department", new { id = item.department_id })">
+                                                            <i class="lni lni-trash-can"></i>
+                                                        </a>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                    <!-- end table row -->
+                                </tbody>
+                            </table>
+                            <!-- end table -->
+                        </div>
+                    </div>
+                    <!-- end card -->
+                </div>
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
         <!-- ========== tables-wrapper end ========== -->
     </div>
     <!-- end container -->

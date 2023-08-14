@@ -292,6 +292,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="EmpData.Designer.cs">
@@ -316,6 +317,7 @@
     <Compile Include="Models\UsersAccount.cs">
       <DependentUpon>MVCTestModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\Department.cs" />
     <Compile Include="ViewModel\Employee.cs" />
     <Compile Include="Models\Employee201file.cs">
       <DependentUpon>MVCTestModel.tt</DependentUpon>
@@ -336,6 +338,7 @@
       <DependentUpon>MVCTestModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\HashPassword.cs" />
+    <Compile Include="ViewModel\Login.cs" />
     <Compile Include="ViewModel\Register.cs" />
     <Compile Include="ViewModel\User1.cs" />
     <Compile Include="MVCTestDataSet.Designer.cs">
@@ -487,6 +490,9 @@
     <Content Include="Views\Home\ViewDetails.cshtml" />
     <Content Include="Views\Home\ViewReport.cshtml" />
     <Content Include="Views\Home\GenRep.cshtml" />
+    <Content Include="Views\Department\AddDepartment.cshtml" />
+    <Content Include="Views\Department\EditDepartment.cshtml" />
+    <Content Include="Views\Home\ViewProfile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
