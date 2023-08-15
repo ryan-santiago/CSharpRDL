@@ -5,103 +5,90 @@
     Layout = "~/Views/Shared/_DashboardLayoutPage.cshtml";
 }
 
-<h2>ViewProfile</h2>
-
-<div>
-    <h4>EmployeeDetail</h4>
-    <hr />
-    <dl class="dl-horizontal">
+<section class="table-components">
+    <div class="container-fluid">
+        <!-- ========== title-wrapper start ========== -->
+        <div class="title-wrapper pt-30">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="title mb-30">
+                        <h2>View Profile</h2>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="breadcrumb-wrapper mb-30">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="@Url.Action("Index","Home")">Dashboard</a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    View Profile
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+        </div>
+        <hr />
         <div class="row">
             <img src="@Model.ImgUrl"
                  alt="" style="width: 200px; height: 150px;" />
         </div>
-        <dt>
-            @Html.DisplayNameFor(model => model.EmployeeID)
-        </dt>
+        <div class="row">
+            <div class="col-md-2">
+                <strong>@Html.DisplayNameFor(model => model.EmployeeID)</strong>
+                @Html.DisplayFor(model => model.EmployeeID)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                <strong>@Html.DisplayNameFor(model => model.Lastname)</strong>
+                @Html.DisplayFor(model => model.Lastname)
+            </div>
+            <div class="col-md-1">
+                <strong>@Html.DisplayNameFor(model => model.Firstname)</strong>
+                @Html.DisplayFor(model => model.Firstname)
+            </div>
+            <div class="col-md-1">
+                <strong>@Html.DisplayNameFor(model => model.Middlename)</strong>
+                @Html.DisplayFor(model => model.Middlename)
+            </div>
+            <div class="col-md-1">
+                <strong>@Html.DisplayNameFor(model => model.Suffix)</strong>
+                @Html.DisplayFor(model => model.Suffix)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                <strong>@Html.DisplayNameFor(model => model.Gender)</strong>
+                @Html.DisplayFor(model => model.Gender)
+            </div>
+            <div class="col-md-2">
+                <strong>@Html.DisplayNameFor(model => model.Birthdate)</strong>
+                @Html.DisplayFor(model => model.Birthdate)
+            </div>
+            <div class="col-md-1">
+                <strong>@Html.DisplayNameFor(model => model.Age)</strong>
+                @Html.DisplayFor(model => model.Age)
+            </div>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.EmployeeID)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Firstname)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Firstname)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Lastname)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Lastname)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Middlename)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Middlename)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Suffix)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Suffix)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ContactNo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ContactNo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Birthdate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Birthdate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Age)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Age)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Department)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Department)
-        </dd>
-
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Gender)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Gender)
-        </dd>
-    </dl>
-</div>
+        <div class="row">
+            <div class="col-md-2">
+                <strong>@Html.DisplayNameFor(model => model.Department)</strong>
+                @Html.DisplayFor(model => model.Department)
+            </div>
+            <div class="col-md-2">
+                <strong>@Html.DisplayNameFor(model => model.ContactNo)</strong>
+                @Html.DisplayFor(model => model.ContactNo)
+            </div>
+            <div class="col-md-3">
+                <strong>@Html.DisplayNameFor(model => model.Address)</strong>
+                @Html.DisplayFor(model => model.Address)
+            </div>
+        </div>
+    </div>
+</section>

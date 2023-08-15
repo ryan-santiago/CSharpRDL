@@ -21,7 +21,7 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="/Home/Index">Dashboard</a>
+                                    <a href="@Url.Action("Index","Home")">Dashboard</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
                                     Dummy
@@ -41,7 +41,7 @@
                     <div class="card-style mb-30">
                         <h6 class="mb-10">Employee Data</h6>
                         <p class="text-sm mb-10" align="right">
-                            <a href="/Home/AddEmployee" class="btn primary-btn-outline rounded-md btn-hover">Add Employee</a>
+                            <a href="@Url.Action("AddEmployee","Home")" class="btn primary-btn-outline rounded-md btn-hover">Add Employee</a>
                             <a href="@Url.Action("GenRep","Home")" class="btn primary-btn-outline">Generate 201 Form Report</a>
                         </p>
                         <div class="table-wrapper table-responsive">

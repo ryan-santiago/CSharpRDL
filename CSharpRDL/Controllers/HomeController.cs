@@ -501,5 +501,22 @@ namespace CSharpRDL.Controllers
 
             return View(employeeDetails);
         }
+
+        public ActionResult ChangePassword(String EmpID)
+        {
+            //if (Session["Username"] == null)
+            //{
+            //    return RedirectToAction("Login", "Login");
+            //}
+            var employeeDetails = db.EmployeeDetails.Where(e => e.EmployeeID == EmpID).FirstOrDefault();
+
+            if (employeeDetails.ProfileImg != null)
+            {
+                employeeDetails.ImgBase64 = Convert.ToBase64String(employeeDetails.ProfileImg);
+                employeeDetails.ImgUrl = string.Format("data:image/png;base64,{0}", employeeDetails.ImgBase64);
+            }
+
+            return View(employeeDetails);
+        }
     }
 }

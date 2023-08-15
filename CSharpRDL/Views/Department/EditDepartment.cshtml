@@ -20,10 +20,10 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="/Home/Index">Dashboard</a>
+                                    <a href="@Url.Action("Index","Home")">Dashboard</a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <a href="/Home/SystemConfiguration">System Configuration</a>
+                                    <a href="@Url.Action("SystemConfiguration","Home")">System Configuration</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
                                     Edit Department
@@ -69,7 +69,7 @@
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <input type="submit" value="Save" class="btn btn-default" />
-                        <a href="/Home/SystemConfiguration" class="btn btn-outline-danger">Cancel</a>
+                        <a href="@Url.Action("SystemConfiguration","Home")" class="btn btn-outline-danger">Cancel</a>
                     </div>
                 </div>
             </div>

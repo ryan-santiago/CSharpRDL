@@ -20,10 +20,10 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="/Home/Index">Dashboard</a>
+                                    <a href="@Url.Action("Index","Home")">Dashboard</a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <a href="/Home/Dummy">Dummy</a>
+                                    <a href="@Url.Action("Dummy","Home")">Dummy</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
                                     Add Employee
@@ -145,7 +145,7 @@
 
             <br />
             <input type="submit" value="Save" class="btn btn-outline-success" />
-            <a href="/Home/Dummy" class="btn btn-outline-danger">Cancel</a>
+            <a href="@Url.Action("Dummy","Home")" class="btn btn-outline-danger">Cancel</a>
 
         }
         <!-- ========== title-wrapper end ========== -->

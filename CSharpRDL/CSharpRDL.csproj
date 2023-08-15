@@ -493,6 +493,7 @@
     <Content Include="Views\Department\AddDepartment.cshtml" />
     <Content Include="Views\Department\EditDepartment.cshtml" />
     <Content Include="Views\Home\ViewProfile.cshtml" />
+    <Content Include="Views\Home\ChangePassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

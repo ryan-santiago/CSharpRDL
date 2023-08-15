@@ -20,7 +20,7 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="/Home/Index">Dashboard</a>
+                                    <a href="@Url.Action("Index","Home")">Dashboard</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
                                     System Configuration
@@ -42,7 +42,7 @@
                     <div class="card-style">
                         <h6 class="mb-10">Department List</h6>
                         <p class="text-sm" align="right">
-                            <a href="/Department/AddDepartment" class="btn primary-btn-outline rounded-md btn-hover">Add Department</a>
+                            <a href="@Url.Action("AddDepartment","Department")" class="btn primary-btn-outline rounded-md btn-hover">Add Department</a>
                         </p>
                         <div class="table-wrapper table-responsive">
                             <table class="table">
