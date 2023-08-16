@@ -5,12 +5,14 @@ using CSharpRDL.ViewModel;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Microsoft.Reporting.WebForms;
+using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime.ConstrainedExecution;
 using System.Runtime.Remoting.Contexts;
 using System.Security.Policy;
 using System.Web;
@@ -501,22 +503,80 @@ namespace CSharpRDL.Controllers
 
             return View(employeeDetails);
         }
-
+        [HttpGet]
         public ActionResult ChangePassword(String EmpID)
         {
             //if (Session["Username"] == null)
             //{
             //    return RedirectToAction("Login", "Login");
             //}
-            var employeeDetails = db.EmployeeDetails.Where(e => e.EmployeeID == EmpID).FirstOrDefault();
+            var employeeAccount = db.UsersAccounts.Where(e => e.EmployeeID == EmpID && e.IsActive == true).FirstOrDefault();
+            //HashPassword hashPassword = new HashPassword();
 
-            if (employeeDetails.ProfileImg != null)
+            //string hashedInputPassword = hashPassword.Password(employeeAccount.Password);
+
+            UserLogin user = new UserLogin();
+
+            user.Username = employeeAccount.Username;
+            user.Email = employeeAccount.Email;
+            user.EmployeeId = employeeAccount.EmployeeID;
+            user.IsActive = (Boolean)employeeAccount.IsActive;
+            user.UserID = employeeAccount.UserID;
+
+            //var User = new UserLogin
+            //{
+            //    Username = employeeAccount.Username,
+            //    OldPassword = hashedInputPassword,
+            //    Email = employeeAccount.Email,
+            //    EmployeeId = employeeAccount.EmployeeID,
+            //    IsActive = (Boolean)employeeAccount.IsActive,
+            //};
+
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult ChangePassword(UserLogin user)
+        {
+            //if (Session["Username"] == null)
+            //{
+            //    return RedirectToAction("Login", "Login");
+            //}
+            if (ModelState.IsValid)
             {
-                employeeDetails.ImgBase64 = Convert.ToBase64String(employeeDetails.ProfileImg);
-                employeeDetails.ImgUrl = string.Format("data:image/png;base64,{0}", employeeDetails.ImgBase64);
-            }
+                HashPassword Password = new HashPassword();
+                string OldPassword = Password.Password(user.OldPassword);
+                string NewPassword = Password.Password(user.NewPassword);
 
-            return View(employeeDetails);
+                var userDetails = db.UsersAccounts.Find(user.UserID);
+
+                if(OldPassword == userDetails.Password)
+                {
+                    userDetails.Password = NewPassword;
+
+                    db.Entry(userDetails).State = EntityState.Modified;
+                    int count = db.SaveChanges();
+
+                    if(count > 0)
+                    {
+                        TempData["msg"] = "<script>alert('Change Password Successfully!');</script>";
+                        return View();
+                    }
+                    else
+                    {
+                        TempData["msg"] = "<script>alert('Change Password Failed!');</script>";
+                        return View();
+                    }
+
+                }
+                else
+                {
+                    ViewBag.msg = "Incorrect Password!";
+                    return View();
+                }
+    
+            }
+            return View();
         }
     }
 }
